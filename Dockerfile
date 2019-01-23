@@ -14,5 +14,4 @@ RUN gem update --system --no-rdoc --no-ri
 RUN gem install susy --no-rdoc --no-ri
 RUN gem install compass --no-rdoc --no-ri
 
-
-CMD "gulp build"
+CMD "/bin/bash"
