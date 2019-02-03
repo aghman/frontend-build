@@ -5,13 +5,14 @@ MAINTAINER aghman
 # Install dependencies
 RUN apk update && \
     apk upgrade && \
-    apk add --quiet --no-cache bash git ruby-dev build-base ruby libffi-dev && \
+    apk add --quiet --no-cache bash git build-base ruby-bundler libffi-dev nodejs && \
+    apk add "ruby<2.6" && \
+    apk add "ruby-dev<2.6" && \
     yarn global add bower gulp && \
+    gem install compass --no-rdoc --no-ri && \
     yarn cache clean && \
     rm -rf /var/cache/apk/* /tmp/*
-# Install Compass (aka Ruby stuff)
-RUN gem update --system --no-rdoc --no-ri
-RUN gem install susy --no-rdoc --no-ri
-RUN gem install compass --no-rdoc --no-ri
 
-CMD "/bin/bash"
+WORKDIR /buildspace
+
+CMD ["/bin/sh", "-l", "-c", "gulp build"]
