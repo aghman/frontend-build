@@ -15,4 +15,4 @@ RUN apk update && \
 
 WORKDIR /buildspace
 
-CMD ["/bin/sh", "-l", "-c", "gulp build"]
+CMD ["/bin/sh", "-l", "-c", "npm install;gulp build"]
